@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Library</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <div id="icon"><img src="./noun-book-1299363.svg" alt="Book by fahmionline"></div>
+            <h1>The Library</h1>
+        </div>
+
+        <div class="library">
+
+            <div class="shelf">
+                <div class="books">
+                    <div class="book" data-id="0" style="content-visibility: hidden; background-color: peru;">AAAAAAAAAAAA</div>
+                </div>
+                <div class="star five">★★★★★</div>
+            </div>
+
+            <div class="shelf">
+                <div class="books"></div>
+                <div class="star four">★★★★</div>
+            </div>
+
+            <div class="shelf">
+                <div class="books"></div>
+                <div class="star three">★★★</div>
+            </div>
+
+            <div class="shelf">
+                <div class="books"></div>
+                <div class="star two">★★</div>
+            </div>
+
+            <div class="shelf">
+                <div class="books"></div>
+                <div class="star one">★</div>
+            </div>
+
+        </div>
+
+        <div class="menu">
+            <div class="info">
+                <p>This project was done with the main focus on the Javascript aspect
+                     of it, hence I hope it is possible for you to ignore the 
+                     simplistic UI implemented.
+                     <br><br><br>
+                    You can add a book with the "New book" button in this panel. <br> Every book 
+                    starts with a 1 star rating, you must drag the book to another shelf
+                    to modify its rating. The higher the book is in the library, the 
+                    better its rating.
+                    <br><br><br>
+                    To remove a book from The Library, you need to drag it to the 'Give away'
+                    icon next to the 'New book' button.
+                    <br><br><br>
+                </p>
+                <button class="add-btn">New book</button>
+                <img class="delete-btn" src="./noun-give-1899006.svg" alt="Give by Adrien Coquet">
+            </div>
+        </div>
+
+        <form action="" id="book-form">
+
+            <div>
+
+                <div>
+                    <label for="title">Title
+                        <input type="text" id="title"></label>
+                </div>
+
+                <div>
+                    <label for="author">Author
+                        <input type="text" id="author"></label>
+                </div>
+
+                <div>
+                    <label for="color">Color
+                        <input type="color" id="color"></label>
+                </div>
+
+                
+                <fieldset>
+                    <legend>Status</legend>
+                    <div>
+
+                        <div>
+                            <label for="status">
+                                <input type="radio" name="status" id="status" checked>
+                                Read
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="not-read">
+                                <input type="radio" name="status" id="not-read">
+                                Not read
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="reading">
+                                <input type="radio" name="status" id="reading">
+                                Reading
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <button id="add-btn-fnl">Place book in shelf</button>
+
+            </div>
+
+        </form>
+
+    </div>    
+    
+</body>
+</html>

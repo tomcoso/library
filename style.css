@@ -1,0 +1,185 @@
+/* GLOBAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    grid: 15% 85% / 80% 20%;
+}
+
+/* CONTENT */
+
+
+.library {
+    grid-row: 2;
+    grid-column: 1;
+
+    display: grid;
+    grid: repeat(5, 1fr) / 1fr;
+    gap: 1.5vh;
+    padding-bottom: 1.5vh;
+    padding-left: 1.5vh;
+
+    background-color: PaleGoldenRod;
+}
+
+
+.shelf {
+    display: grid;
+    grid: 1fr / 1fr 15px;
+    gap: 5px;
+}
+
+.star {
+    transform: rotate(90deg);
+    align-self: center;
+    justify-self: center;
+    background-color: transparent;
+    color: goldenrod;
+    font-size: 1.2rem;
+}
+
+.books {
+    box-shadow: inset 15px 15px 15px #000;
+
+    background-color: PaleGoldenRod;
+    filter: brightness(90%);
+
+    display: grid;
+    grid: 1fr / repeat(auto-fit, min-content);
+    justify-content: center;
+}
+
+
+
+
+.menu {
+    grid-column: 2;
+    grid-row: 2/3;
+    background-color: PaleGoldenRod;
+
+    padding: 5%;
+}
+.info {
+    background-color: inherit;
+    filter: brightness(95%);
+    box-shadow: inset 3px 3px 10px -5px #000;
+
+    padding: 5%;
+    font-size: .9rem;
+
+    display: grid;
+    grid: repeat(2, min-content) / 1fr;
+}
+.add-btn {
+    grid-row: 2;
+
+    margin: 10px;
+    padding: .2rem .7rem;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: peru;
+
+    box-shadow: 1px 2px 2px #000;
+}
+.add-btn:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: none;
+}
+.info img {
+    grid-row: 2;
+    height: 50px;
+}
+.info p {
+    grid-column: 1 / 3;
+}
+
+
+
+.header {
+    grid-row: 1;
+    grid-column: span 2;
+
+    background-color: PaleGoldenRod;
+    border-bottom: 2px solid #000;
+
+    box-shadow: 0px 5px 15px -8px #000;
+    z-index: 1;
+
+    display: grid;
+    grid: 1fr / min-content 1fr;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 3rem;
+}
+
+#icon {
+    padding: 5px;
+    margin-bottom: -25px;
+}
+#icon img {
+    height: 100px;
+}
+
+/* BOOKS */
+
+.book {
+    border: 1px solid #222;
+
+    box-shadow: inset 2px 0px 5px -3px #000;
+
+    height: 100%;
+    width: 1.2rem;
+
+    cursor: pointer;
+}
+
+#book-form {
+    display: none;
+}
+#book-form > div{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -250px;
+    margin-left: -150px;
+
+    height: 500px;
+    width: 300px;
+
+    box-shadow: 0px 0px 400px 100px #FFF;
+    z-index: 2;
+    background-color: peru;
+    border: 2px solid #000;
+    padding: 3rem 1rem;
+
+    display: grid;
+    grid: repeat(4, fr) / 1fr;
+    gap: 1rem;
+    place-content: start;
+}
+
+fieldset {
+    height: min-content;
+}
+
+fieldset > div {
+    display: grid;
+    grid: repeat(3, 1fr) / 1fr;
+    padding: .5rem;
+    gap: .5rem;
+}
