@@ -63,65 +63,67 @@
                     icon next to the 'New book' button.
                     <br><br><br>
                 </p>
-                <button class="add-btn">New book</button>
+                <button class="display-form">New book</button>
                 <img class="delete-btn" src="./noun-give-1899006.svg" alt="Give by Adrien Coquet">
             </div>
         </div>
+    </div>
 
-        <form action="" id="book-form">
+    <form action="" id="book-form" class="hidden">
+
+        <div>
 
             <div>
-
-                <div>
-                    <label for="title">Title
-                        <input type="text" id="title"></label>
-                </div>
-
-                <div>
-                    <label for="author">Author
-                        <input type="text" id="author"></label>
-                </div>
-
-                <div>
-                    <label for="color">Color
-                        <input type="color" id="color"></label>
-                </div>
-
-                
-                <fieldset>
-                    <legend>Status</legend>
-                    <div>
-
-                        <div>
-                            <label for="status">
-                                <input type="radio" name="status" id="status" checked>
-                                Read
-                            </label>
-                        </div>
-
-                        <div>
-                            <label for="not-read">
-                                <input type="radio" name="status" id="not-read">
-                                Not read
-                            </label>
-                        </div>
-
-                        <div>
-                            <label for="reading">
-                                <input type="radio" name="status" id="reading">
-                                Reading
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <button id="add-btn-fnl">Place book in shelf</button>
-
+                <label for="title">Title
+                    <input type="text" id="title"></label>
             </div>
 
-        </form>
+            <div>
+                <label for="author">Author
+                    <input type="text" id="author"></label>
+            </div>
 
-    </div>    
+            <div>
+                <label for="color">Color
+                    <input type="color" id="color"></label>
+            </div>
+
+            
+            <fieldset>
+                <legend>Status</legend>
+                <div>
+
+                    <div>
+                        <label for="status">
+                            <input type="radio" name="status" id="status" checked>
+                            Read
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="not-read">
+                            <input type="radio" name="status" id="not-read">
+                            Not read
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="reading">
+                            <input type="radio" name="status" id="reading">
+                            Reading
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <button id="add-btn-fnl">Place book in shelf</button>
+            <button id="cancel-btn">Cancel</button>
+
+        </div>
+
+    </form>
+
+    <!-- </div>     -->
     
 </body>
 </html>
