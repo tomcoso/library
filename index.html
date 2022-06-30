@@ -21,7 +21,7 @@
 
             <div class="shelf">
                 <div class="books" data-shelf="5">
-                    <div class="book" data-index="0" style="content-visibility: hidden; background-color: peru;">AAAAAAAAAAAA</div>
+                    <div class="book" data-index="0" style="content-visibility: hidden; background-color: #6F4E37;">AAAAAAAAAAAA</div>
                 </div>
                 <div class="star five">★★★★★</div>
             </div>
@@ -85,7 +85,7 @@
 
             <div>
                 <label for="color">Color
-                    <input type="color" id="color"></label>
+                    <input type="color" id="color" value="#6F4E37"></label>
             </div>
 
             
@@ -95,29 +95,29 @@
 
                     <div>
                         <label for="status">
-                            <input type="radio" name="status" id="status" checked>
+                            <input type="radio" name="status" id="status" value="Read" checked>
                             Read
                         </label>
                     </div>
 
                     <div>
                         <label for="not-read">
-                            <input type="radio" name="status" id="not-read">
+                            <input type="radio" name="status" id="not-read" value="Not read">
                             Not read
                         </label>
                     </div>
 
                     <div>
                         <label for="reading">
-                            <input type="radio" name="status" id="reading">
+                            <input type="radio" name="status" id="reading" value="Reading">
                             Reading
                         </label>
                     </div>
                 </div>
             </fieldset>
 
-            <button id="add-btn-fnl">Place book in shelf</button>
-            <button id="cancel-btn">Cancel</button>
+            <button type="button" id="add-btn-fnl">Place book in shelf</button>
+            <button type="button" id="cancel-btn">Cancel</button>
 
         </div>
 

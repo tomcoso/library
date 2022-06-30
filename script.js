@@ -9,7 +9,7 @@
 let library = [];
 
 
-function Book(title, author, status, rating, color) {
+function Book(title, author, status, color, rating) {
 
     this.title = title;
     this.author = author;
@@ -38,7 +38,7 @@ function updateLibrary() {
         for (let j in shelf) {
 
             // console.log(library[i].rating, shelf[j].attributes[1].value);
-            if (library[i].rating === shelf[j].attributes[1].value) {
+            if (library[i].rating == shelf[j].attributes[1].value) {
 
                 shelf[j].append(library[i].createElement());
                 break
@@ -49,9 +49,9 @@ function updateLibrary() {
 }
 
 
-function addToLibrary(title, author, status, rating = 3, color = 'peru') {
+function addToLibrary(title, author, status, color = 'peru', rating = 3) {
 
-    const newBook = new Book(title, author, status, rating, color);
+    const newBook = new Book(title, author, status, color, rating);
 
     library.push(newBook);
 
@@ -62,7 +62,7 @@ function addToLibrary(title, author, status, rating = 3, color = 'peru') {
     bookElement.textContent = `${title}<br>${author}<br>${status}`;
 
     updateLibrary(bookElement);
-    console.log(library);
+    // console.log(library);
 
 };
 
@@ -80,7 +80,7 @@ Book.prototype.createElement = function() {
 Book.prototype.changeRating = function(newRating) {
 
     this.rating = newRating;
-    
+
     updateLibrary();
     return `${this.title} is now ${this.rating} stars`
 };
@@ -115,3 +115,41 @@ showFormBtn.addEventListener('click', displayForm);
 
 const hideFormBtn = document.querySelector('#cancel-btn');
 hideFormBtn.addEventListener('click', displayForm);
+
+// UI
+const newBookBtn = document.querySelector('#add-btn-fnl');
+newBookBtn.addEventListener('click', addToLibraryHandler)
+
+// this function needs to take the form content and pass it to addToLibrary() function.
+// and afterwards it needs to clean the form and call displayForm()
+
+// fill form
+// v
+// add to library
+// v
+// clear form and hide
+
+function addToLibraryHandler() {
+
+    let titleElement = document.querySelector('#title');
+    title = titleElement.value;
+    // console.log(title);
+    
+    let authorElement = document.querySelector('#author');
+    author = authorElement.value;
+    // console.log(author);
+
+    let statusElement = document.querySelector(':checked');
+    status = statusElement.value;
+    // console.log(status);
+
+    let colorElement = document.querySelector('#color');
+    color = colorElement.value;
+    // console.log(color);
+
+    addToLibrary(title, author, status, color);
+    displayForm();
+
+    titleElement.value = "";
+    authorElement.value = "";
+}
