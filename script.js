@@ -38,6 +38,7 @@ function updateLibrary() {
         for (let j in shelf) {
 
             // console.log(library[i].rating, shelf[j].attributes[1].value);
+            // console.log(library[i]);
             if (library[i].rating == shelf[j].attributes[1].value) {
 
                 shelf[j].append(library[i].createElement());
@@ -55,15 +56,9 @@ function addToLibrary(title, author, status, color = 'peru', rating = 3) {
 
     library.push(newBook);
 
-    const bookElement = document.createElement('div');
-    bookElement.classList.add('book');
-    bookElement.setAttribute('data-title', title);
-    bookElement.setAttribute('style', `content-visibility: hidden; background-color: ${color};`);
-    bookElement.textContent = `${title}<br>${author}<br>${status}`;
+    const bookElement = newBook.createElement();
 
     updateLibrary(bookElement);
-    // console.log(library);
-
 };
 
 Book.prototype.createElement = function() {
@@ -71,9 +66,22 @@ Book.prototype.createElement = function() {
     const bookElement = document.createElement('div');
     bookElement.classList.add('book');
     bookElement.setAttribute('data-title', this.title);
-    bookElement.setAttribute('style', `content-visibility: hidden; background-color: ${this.color};`);
+    bookElement.setAttribute('style', `background-color: ${this.color};`);
     bookElement.setAttribute('draggable', true);
-    bookElement.textContent = `${this.title}<br>${this.author}<br>${this.status}`;
+
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('book-info');
+
+    for (let i in this) {
+        // console.log(i)
+        if (i === 'title' || i === 'author' || i === 'status') {
+            const info = document.createElement('p');
+            info.textContent = this[i];
+
+            wrapper.append(info);
+        }
+    }
+    bookElement.append(wrapper);
 
     return bookElement;
 }
@@ -134,19 +142,15 @@ function addToLibraryHandler() {
 
     let titleElement = document.querySelector('#title');
     title = titleElement.value;
-    // console.log(title);
     
     let authorElement = document.querySelector('#author');
     author = authorElement.value;
-    // console.log(author);
 
     let statusElement = document.querySelector(':checked');
     status = statusElement.value;
-    // console.log(status);
 
     let colorElement = document.querySelector('#color');
     color = colorElement.value;
-    // console.log(color);
 
     addToLibrary(title, author, status, color);
     displayForm();
@@ -164,16 +168,18 @@ let dragged = null;
 
 shelves.forEach((shelf) => {shelf.addEventListener('dragstart', (event) => {
     dragged = event.target;
-    console.log(event.target.attributes[1].value);
 }) });
 
 
-shelves.forEach((shelf) => {shelf.addEventListener('drop', changeRatingHandler)})
+shelves.forEach((shelf) => {shelf.addEventListener('drop', changeRatingHandler)});
+
+const deleteBtn = document.querySelector('.delete-btn');
+deleteBtn.addEventListener('drop', changeRatingHandler);
+
 
 function changeRatingHandler(event) {
     let draggedObj = null
-    // console.log(event.target.attributes[1].value);
-
+    
     for (let i in library) {
 
         if (library[i].title === dragged.attributes[1].value) {
@@ -185,5 +191,27 @@ function changeRatingHandler(event) {
         }
     }
 
-    draggedObj.changeRating(event.target.attributes[1].value);
+    if (event.path[0].classList == 'book') {
+
+        draggedObj.changeRating(event.path[1].attributes[1].value);
+
+    } else if (event.path[0].classList == 'books') {
+
+        draggedObj.changeRating(event.path[0].attributes[1].value);
+
+    } else if (event.path[0].classList == 'delete-btn') {
+
+        draggedObj.delete();
+    }
 } 
+
+
+function demoGenerator() {
+    addToLibrary('The Name of the Wind', 'Patrick Rothfuss', 'Read', 'orange', '5');
+    addToLibrary('The way of Kings', 'Brandon Sanderson', 'Read', 'Yellow', '5');
+    addToLibrary('Dune', 'Frank Herbert', 'Reading');
+    addToLibrary('Siddharta', 'Hermann Hesse', 'Read', 'peru', '3');
+    addToLibrary('Demian', 'Hermann Hesse', 'Read', '#EEE', '4');
+    addToLibrary('The Sailor Who Fell From Grace With The Sea', 'Yukio Mishima', 'Read', 'blue', '4');
+}
+demoGenerator();

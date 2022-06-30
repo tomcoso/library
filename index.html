@@ -21,7 +21,6 @@
 
             <div class="shelf">
                 <div class="books" data-shelf="5">
-                    <div class="book" draggable="true" data-index="0" style="content-visibility: hidden; background-color: #6F4E37;">AAAAAAAAAAAA</div>
                 </div>
                 <div class="star five">★★★★★</div>
             </div>
@@ -64,7 +63,7 @@
                     <br><br><br>
                 </p>
                 <button class="display-form">New book</button>
-                <img class="delete-btn" src="./noun-give-1899006.svg" alt="Give by Adrien Coquet">
+                <div class="delete-btn"><img class="delete-btn" src="./noun-give-1899006.svg" alt="Give by Adrien Coquet"></div>
             </div>
         </div>
     </div>
@@ -75,12 +74,12 @@
 
             <div>
                 <label for="title">Title
-                    <input type="text" id="title"></label>
+                    <input type="text" id="title" required></label>
             </div>
 
             <div>
                 <label for="author">Author
-                    <input type="text" id="author"></label>
+                    <input type="text" id="author" required></label>
             </div>
 
             <div>
