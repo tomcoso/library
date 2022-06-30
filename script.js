@@ -72,6 +72,7 @@ Book.prototype.createElement = function() {
     bookElement.classList.add('book');
     bookElement.setAttribute('data-title', this.title);
     bookElement.setAttribute('style', `content-visibility: hidden; background-color: ${this.color};`);
+    bookElement.setAttribute('draggable', true);
     bookElement.textContent = `${this.title}<br>${this.author}<br>${this.status}`;
 
     return bookElement;
@@ -153,3 +154,36 @@ function addToLibraryHandler() {
     titleElement.value = "";
     authorElement.value = "";
 }
+
+document.addEventListener('dragover', event => {
+    event.preventDefault();
+})
+
+const shelves = document.querySelectorAll('.books');
+let dragged = null;
+
+shelves.forEach((shelf) => {shelf.addEventListener('dragstart', (event) => {
+    dragged = event.target;
+    console.log(event.target.attributes[1].value);
+}) });
+
+
+shelves.forEach((shelf) => {shelf.addEventListener('drop', changeRatingHandler)})
+
+function changeRatingHandler(event) {
+    let draggedObj = null
+    // console.log(event.target.attributes[1].value);
+
+    for (let i in library) {
+
+        if (library[i].title === dragged.attributes[1].value) {
+
+            draggedObj = library[i];
+            dragged = null;
+            break
+
+        }
+    }
+
+    draggedObj.changeRating(event.target.attributes[1].value);
+} 
