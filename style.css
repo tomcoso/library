@@ -57,8 +57,10 @@
     filter: brightness(90%);
 
     display: grid;
-    grid: 1fr / repeat(auto-fit, min-content);
-    justify-content: center;
+    grid: 1fr / repeat(auto-fit, 1.2rem);
+    gap: 5px;
+    place-content: center;
+    place-items: center;
 }
 
 
