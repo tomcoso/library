@@ -25,9 +25,9 @@ function updateLibrary() {
     const shelf = document.querySelectorAll('.books');
 
     for(let j in shelf) {
-        // console.log(shelf[j]);
+
         while (shelf[j].firstChild) {
-            // console.log(shelf[j].firstChild);
+
             shelf[j].removeChild(shelf[j].firstChild);
         }
 
@@ -37,8 +37,6 @@ function updateLibrary() {
 
         for (let j in shelf) {
 
-            // console.log(library[i].rating, shelf[j].attributes[1].value);
-            // console.log(library[i]);
             if (library[i].rating == shelf[j].attributes[1].value) {
 
                 shelf[j].append(library[i].createElement());
@@ -47,6 +45,11 @@ function updateLibrary() {
 
         }
     };
+
+    const changeStatusBtn = document.querySelectorAll('.book-info > p:last-child');
+
+    changeStatusBtn.forEach(btn => btn.addEventListener('click', changeStatusHandler))
+    
 }
 
 
@@ -56,9 +59,7 @@ function addToLibrary(title, author, status, color = 'peru', rating = 3) {
 
     library.push(newBook);
 
-    const bookElement = newBook.createElement();
-
-    updateLibrary(bookElement);
+    updateLibrary();
 };
 
 Book.prototype.createElement = function() {
@@ -69,12 +70,17 @@ Book.prototype.createElement = function() {
     bookElement.setAttribute('style', `background-color: ${this.color};`);
     bookElement.setAttribute('draggable', true);
 
+    const initials = document.createElement('div');
+    initials.textContent = `${this.title[0]} ${this.author[0]} ${this.status[0]}`;
+    bookElement.append(initials);
+
     const wrapper = document.createElement('div');
     wrapper.classList.add('book-info');
 
     for (let i in this) {
-        // console.log(i)
+
         if (i === 'title' || i === 'author' || i === 'status') {
+
             const info = document.createElement('p');
             info.textContent = this[i];
 
@@ -94,13 +100,21 @@ Book.prototype.changeRating = function(newRating) {
     return `${this.title} is now ${this.rating} stars`
 };
 
+Book.prototype.changeStatus = function(newStatus) {
+    
+    this.status = newStatus;
+
+    updateLibrary();
+    return `${this.title} was changed to ${this.status}`
+}
+
 Book.prototype.delete = function() {
 
     library.splice(library.indexOf(this), 1);
 
     updateLibrary();
-    return `${this.title} deleted`;
-}
+    return `${this.title} deleted`
+};
 
 
 const form = document.querySelector('#book-form');
@@ -129,14 +143,6 @@ hideFormBtn.addEventListener('click', displayForm);
 const newBookBtn = document.querySelector('#add-btn-fnl');
 newBookBtn.addEventListener('click', addToLibraryHandler)
 
-// this function needs to take the form content and pass it to addToLibrary() function.
-// and afterwards it needs to clean the form and call displayForm()
-
-// fill form
-// v
-// add to library
-// v
-// clear form and hide
 
 function addToLibraryHandler() {
 
@@ -204,6 +210,30 @@ function changeRatingHandler(event) {
         draggedObj.delete();
     }
 } 
+
+function changeStatusHandler(event) {
+    // console.log(event.path[2].attributes[1].value);
+
+    for (let i in library) {
+
+        if (library[i].title == event.path[2].attributes[1].value) {
+
+            switch (library[i].status) {
+                case 'Read' :
+                    library[i].changeStatus('Not Read');
+                    break;
+                case 'Not Read' :
+                    library[i].changeStatus('Reading');
+                    break;
+                case 'Reading' :
+                    library[i].changeStatus('Read');
+                    break;
+            }
+        }
+    }
+    event.path[2].attributes[1].value
+}
+
 
 
 function demoGenerator() {

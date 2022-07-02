@@ -59,7 +59,7 @@
     display: grid;
     grid: 1fr / repeat(auto-fit, 1.2rem);
     gap: 5px;
-    place-content: center;
+    place-content: start;
     place-items: center;
 }
 
@@ -147,18 +147,19 @@
 .book {
     border: 1px solid #222;
 
-    box-shadow: inset 2px 0px 5px -3px #000;
+    box-shadow: inset 5px 4px 5px -3px #000;
 
     height: 100%;
     width: 1.2rem;
 
     cursor: pointer;
-    content-visibility: hidden;
 }
-.book:hover {
-    content-visibility: visible;
+.book:hover .book-info{
+    display: block;
 }
 .book-info {
+    display: none;
+
     width: min-content;
     height: min-content;
     white-space: nowrap;
@@ -168,8 +169,27 @@
     border: 2px solid #222;
 
     position: absolute;
+    top: 0px;
     z-index: 2;
 }
+
+.book-info > p {
+    margin-bottom: 5px;
+}
+
+.book-info > p:last-child:hover {
+    text-decoration: underline;
+}
+
+.book > div:first-child {
+    font-size: .8rem;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+
+
+
 
 .hidden {
     display: none;
