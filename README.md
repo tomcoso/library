@@ -1,7 +1,7 @@
 # Library project from TOP
 
-####[Live demo](https://tomcoso.github.io/library/)
-####[Link to project](https://www.theodinproject.com/lessons/node-path-javascript-library)
+#### [Live demo](https://tomcoso.github.io/library/)
+#### [Link to project](https://www.theodinproject.com/lessons/node-path-javascript-library)
 
 I started coding the UI layout and ideas and at the time of coding the script I realised I was a bit ambitious. But I will still do my best to get everything done. It shouldnt be too hard.
 
