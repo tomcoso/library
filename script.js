@@ -9,14 +9,68 @@
 let library = [];
 
 
-function Book(title, author, status, color, rating) {
+class Book {
+    constructor(title, author, status, color, rating) {
+        this.title = title;
+        this.author = author;
+        this.status = status;
+        this.rating = rating;
+        this.color = color
+    }
 
-    this.title = title;
-    this.author = author;
-    this.status = status;
-    this.rating = rating;
-    this.color = color
+    createElement() {
 
+        const bookElement = document.createElement('div');
+        bookElement.classList.add('book');
+        bookElement.setAttribute('data-title', this.title);
+        bookElement.setAttribute('style', `background-color: ${this.color};`);
+        bookElement.setAttribute('draggable', true);
+    
+        const initials = document.createElement('div');
+        initials.textContent = `${this.title[0]} ${this.author[0]} ${this.status[0]}`;
+        bookElement.append(initials);
+    
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('book-info');
+    
+        for (let i in this) {
+    
+            if (i === 'title' || i === 'author' || i === 'status') {
+    
+                const info = document.createElement('p');
+                info.textContent = this[i];
+    
+                wrapper.append(info);
+            }
+        }
+        bookElement.append(wrapper);
+    
+        return bookElement;
+    }
+    
+    changeRating(newRating) {
+    
+        this.rating = newRating;
+    
+        updateLibrary();
+        return `${this.title} is now ${this.rating} stars`
+    };
+    
+    changeStatus(newStatus) {
+        
+        this.status = newStatus;
+    
+        updateLibrary();
+        return `${this.title} was changed to ${this.status}`
+    }
+    
+    delete() {
+    
+        library.splice(library.indexOf(this), 1);
+    
+        updateLibrary();
+        return `${this.title} deleted`
+    };
 };
 
 
@@ -61,61 +115,6 @@ function addToLibrary(title, author, status, color = 'peru', rating = 3) {
 
     updateLibrary();
 };
-
-Book.prototype.createElement = function() {
-
-    const bookElement = document.createElement('div');
-    bookElement.classList.add('book');
-    bookElement.setAttribute('data-title', this.title);
-    bookElement.setAttribute('style', `background-color: ${this.color};`);
-    bookElement.setAttribute('draggable', true);
-
-    const initials = document.createElement('div');
-    initials.textContent = `${this.title[0]} ${this.author[0]} ${this.status[0]}`;
-    bookElement.append(initials);
-
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('book-info');
-
-    for (let i in this) {
-
-        if (i === 'title' || i === 'author' || i === 'status') {
-
-            const info = document.createElement('p');
-            info.textContent = this[i];
-
-            wrapper.append(info);
-        }
-    }
-    bookElement.append(wrapper);
-
-    return bookElement;
-}
-
-Book.prototype.changeRating = function(newRating) {
-
-    this.rating = newRating;
-
-    updateLibrary();
-    return `${this.title} is now ${this.rating} stars`
-};
-
-Book.prototype.changeStatus = function(newStatus) {
-    
-    this.status = newStatus;
-
-    updateLibrary();
-    return `${this.title} was changed to ${this.status}`
-}
-
-Book.prototype.delete = function() {
-
-    library.splice(library.indexOf(this), 1);
-
-    updateLibrary();
-    return `${this.title} deleted`
-};
-
 
 const form = document.querySelector('#book-form');
 const container = document.querySelector('.container');
