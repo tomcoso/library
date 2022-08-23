@@ -139,9 +139,34 @@ showFormBtn.addEventListener('click', displayForm);
 const hideFormBtn = document.querySelector('#cancel-btn');
 hideFormBtn.addEventListener('click', displayForm);
 
+// VALIDATION
+const titleInp = document.getElementById('title');
+titleInp.setCustomValidity('Please write the name of the book!');
+titleInp.addEventListener('input', () => {
+    titleInp.setCustomValidity('')
+    if (!titleInp.checkValidity()) {
+        titleInp.setCustomValidity('Please write the name of the book!');
+    }
+   
+})
+const authorInp = document.getElementById('author');
+authorInp.setCustomValidity('Please write the name of the author!');
+authorInp.addEventListener('input', () => {
+    authorInp.setCustomValidity('')
+    if (!authorInp.checkValidity()){
+        authorInp.setCustomValidity('Please write the name of the author!');
+    }
+})
+
 // UI
 const newBookBtn = document.querySelector('#add-btn-fnl');
-newBookBtn.addEventListener('click', addToLibraryHandler)
+newBookBtn.addEventListener('click', () => {
+    if (form.checkValidity()) {
+        addToLibraryHandler();
+    } else {
+        form.reportValidity();
+    }
+})
 
 
 function addToLibraryHandler() {
